@@ -10,7 +10,11 @@ public class TileSpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject tileToSpawn;
     [SerializeField] int amountToSpawn;
-    [SerializeField] float spawnRadius;
+    [SerializeField] float spawnRadiusX;
+    [SerializeField] float spawnRadiusY;
+    [Range(0f,10f)]
+    [SerializeField] float spawnRadiusZ;
+    [SerializeField] bool shouldDetectCollisionWhenSpawning;
 
     const int maxSpawnAttempts = 100;
     const float spawnCollisionCheckRadius = 1;

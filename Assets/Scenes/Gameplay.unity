@@ -259,9 +259,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5dcf589fad5af4da578e84d782e62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileToSpawn: {fileID: 3634395077057130659, guid: def8209ec710ea94f9995ab28cf78208, type: 3}
-  amountToSpawn: 90
-  spawnRadius: 10
+  tileToSpawn: {fileID: 7503425350386946434, guid: 3cae598656fe6b14d930fc4059dc8a6c, type: 3}
+  amountToSpawn: 30
+  spawnRadiusX: 6
+  spawnRadiusY: 5
+  spawnRadiusZ: 10
+  shouldDetectCollisionWhenSpawning: 1
 --- !u!1 &309021854
 GameObject:
   m_ObjectHideFlags: 0
