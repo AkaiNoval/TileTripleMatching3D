@@ -369,7 +369,7 @@ MonoBehaviour:
   spawnRadiusX: 6
   spawnRadiusY: 5
   spawnRadiusZ: 10
-  shouldDetectCollisionWhenSpawning: 0
+  shouldDetectCollisionWhenSpawning: 1
 --- !u!1 &309021854
 GameObject:
   m_ObjectHideFlags: 0

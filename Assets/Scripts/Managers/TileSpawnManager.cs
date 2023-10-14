@@ -12,6 +12,7 @@ public class TileSpawnManager : MonoBehaviour
     [SerializeField] int amountToSpawn;
     [SerializeField] float spawnRadiusX;
     [SerializeField] float spawnRadiusY;
+    [Range(0f,10f)]
     [SerializeField] float spawnRadiusZ;
     [SerializeField] bool shouldDetectCollisionWhenSpawning;
 
