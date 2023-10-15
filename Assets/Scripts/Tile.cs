@@ -5,4 +5,6 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] TileDataSO tileDataSO;
+    [SerializeField] string tileName;
+    [SerializeField] Sprite tileSprite;
 }

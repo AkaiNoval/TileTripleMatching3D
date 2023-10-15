@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class TileSpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject tileToSpawn;
+    [SerializeField] Tile tileToSpawn;
     [SerializeField] int amountToSpawn;
     [Range(5f, 7f)]
     [SerializeField] float spawnRadiusX;
@@ -67,7 +67,7 @@ public class TileSpawnManager : MonoBehaviour
         return false;
     }
     float RandomTileRotation(float minRotation, float maxRotation) => Random.Range(minRotation, maxRotation);
-    private Vector3 GetRandomSpawnPoint(float radiusX, float radiusY, float radiusZ)
+    Vector3 GetRandomSpawnPoint(float radiusX, float radiusY, float radiusZ)
     {
         float randomX = Random.Range(-radiusX, radiusX);
         float randomY = Random.Range(-radiusY, radiusY);

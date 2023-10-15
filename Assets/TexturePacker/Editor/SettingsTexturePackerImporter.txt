@@ -1,19 +1,19 @@
 version: 2
 tpsheetFileNames:
-- Assets/Sprites/Minerals/tpsheet/MineralsTPSHEET-1.tpsheet
-- Assets/Sprites/Minerals/tpsheet/MineralsTPSHEET-2.tpsheet
-- Assets/Sprites/Minerals/tpsheet/MineralsTPSHEET-3.tpsheet
-- Assets/Sprites/Minerals/tpsheet/MineralsTPSHEET-4.tpsheet
-- Assets/Sprites/Minerals/tpsheet/MineralsTPSHEET-5.tpsheet
-- Assets/Sprites/Minerals/tpsheet/MineralsTPSHEET-default.tpsheet
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-1.tpsheet
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-2.tpsheet
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-3.tpsheet
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-4.tpsheet
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-5.tpsheet
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-6.tpsheet
 - Assets/TexturePacker/Example/SpriteSheet/sprites.tpsheet
 textureFileNames:
-- Assets/Sprites/Minerals/tpsheet/Minerals-1.png
-- Assets/Sprites/Minerals/tpsheet/Minerals-2.png
-- Assets/Sprites/Minerals/tpsheet/Minerals-3.png
-- Assets/Sprites/Minerals/tpsheet/Minerals-4.png
-- Assets/Sprites/Minerals/tpsheet/Minerals-5.png
-- Assets/Sprites/Minerals/tpsheet/Minerals-default.png
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-1.png
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-2.png
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-3.png
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-4.png
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-5.png
+- Assets/Sprites/Minerals/tpsheet/MineralsSheetUpdate-6.png
 - Assets/TexturePacker/Example/SpriteSheet/sprites.png
 normalmapFileNames:
 - 

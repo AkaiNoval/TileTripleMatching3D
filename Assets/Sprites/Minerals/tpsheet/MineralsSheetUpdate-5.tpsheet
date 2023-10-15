@@ -1,0 +1,19 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:82e973d07343b8ed8234d0299362ca19:5012f348c47474a72e39039d5eebc52a:dd04745a83860353e29e8675821b12c1$
+#
+:format=40300
+:texture=MineralsSheetUpdate-5.png
+:size=2048x2048
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+Ore_10;0;1314;750;734; 0.5;0.5; 0;0;0;0
+Ore_11;883;1332;762;716; 0.5;0.5; 0;0;0;0
+Ore_12;0;531;659;716; 0.5;0.5; 0;0;0;0
+Ore_13;883;446;883;801; 0.5;0.5; 0;0;0;0
