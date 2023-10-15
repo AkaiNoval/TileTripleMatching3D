@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   tileSpawnDatas:
-  - tileData: {fileID: 11400000, guid: 57ed49173bcc9444baf5bbc3f5ecbda6, type: 2}
-    setAmount: 10
-  - tileData: {fileID: 11400000, guid: de3d18356cf24a84b9f9ab8b028b220b, type: 2}
-    setAmount: 10
-  - tileData: {fileID: 11400000, guid: b9a3643b16a9cc54c885bd5e56535e8a, type: 2}
-    setAmount: 10
-  - tileData: {fileID: 11400000, guid: 29474d03d11a2f248b9557923a142a6c, type: 2}
-    setAmount: 10
+  - tileData: {fileID: 11400000, guid: ae541fae23234e34587ce97164b9b9e5, type: 2}
+    setAmount: 3
+  - tileData: {fileID: 11400000, guid: 9acd8432a88d380469154adfaf8199fb, type: 2}
+    setAmount: 3
+  - tileData: {fileID: 11400000, guid: fc0e49c4ad9fc2d47843069fc66d8772, type: 2}
+    setAmount: 2
+  - tileData: {fileID: 11400000, guid: 8bd0c54f13b3eb94ab305d0e316219e5, type: 2}
+    setAmount: 2
   spawnRadiusX: 5
   spawnRadiusY: 5
   spawnRadiusZ: 6

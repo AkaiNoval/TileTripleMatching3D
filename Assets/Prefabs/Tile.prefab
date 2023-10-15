@@ -265,6 +265,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ece26d02df342f4c95a99c1cb6b3c0c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4781091474013272881}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ece26d02df342f4c95a99c1cb6b3c0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4892820790086259190}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ece26d02df342f4c95a99c1cb6b3c0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6108420343241378857}
   m_SourcePrefab: {fileID: 100100000, guid: 0ece26d02df342f4c95a99c1cb6b3c0c, type: 3}
 --- !u!4 &7163631845199432504 stripped
 Transform:
@@ -339,3 +345,33 @@ MonoBehaviour:
   tileDataSO: {fileID: 0}
   tileName: 
   tileImage: {fileID: 4160343474509171062}
+--- !u!114 &4892820790086259190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503425350386946434}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.79665923, b: 1, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &6108420343241378857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503425350386946434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352c976930868e449ad09f64231dd8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

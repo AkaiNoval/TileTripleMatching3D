@@ -22,5 +22,6 @@ public class LevelDataSO : ScriptableObject
 public class TileSpawnData
 {
     public TileDataSO tileData;
+    [Range(1,10)]
     public int setAmount;
 }

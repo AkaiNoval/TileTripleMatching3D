@@ -10,14 +10,12 @@ public class TileSpawnManager : MonoBehaviour
 {
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
-    [SerializeField] List<TileDataSO> tilesData;
     const int MAX_SPAWN_ATTEMPTS = 100;
     const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f;
 
     private void Start()
     {
         InitTile(levelDataSO);
-        tilesData = CacheTripleTileData(levelDataSO);
     }
 
     private void InitTile(LevelDataSO levelDataSO)

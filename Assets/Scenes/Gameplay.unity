@@ -411,7 +411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileToSpawn: {fileID: -4781091474013272881, guid: 3cae598656fe6b14d930fc4059dc8a6c, type: 3}
   levelDataSO: {fileID: 11400000, guid: 58a5325c3ddb41542b236e918e6a29fb, type: 2}
-  tilesData: []
 --- !u!1 &309021854
 GameObject:
   m_ObjectHideFlags: 0
