@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
-  m_Name: Aqua-Edged Shard
+  m_Name: Aqua-Edged Shard - Cyan
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 1197767371, guid: 712a6b969228c1a42820b6db1c8495e8, type: 3}
-  tileName: Aqua-Edged Shard
+  tileSprite: {fileID: -477800546, guid: 5a6f3922260e1144c8abc606b1d60ab3, type: 3}
+  tileName: Aqua-Edged

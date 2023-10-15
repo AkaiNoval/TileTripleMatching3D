@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
-  m_Name: Cyanium Ore
+  m_Name: CobaltBronze
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 2101467911, guid: a606a35f00e44774395a4716bae80785, type: 3}
-  tileName: Cyanium Ore
+  tileSprite: {fileID: -459340978, guid: 0bfab05adfc2bc0499def6d6a8f8ee41, type: 3}
+  tileName: CobaltBronze Blend

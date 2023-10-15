@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Malachite Ore
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: -2013944440, guid: a606a35f00e44774395a4716bae80785, type: 3}
+  tileSprite: {fileID: -652286528, guid: 4eb030864d145de478d542416e293367, type: 3}
   tileName: Malachite Ore

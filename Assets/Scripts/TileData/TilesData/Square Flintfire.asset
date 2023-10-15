@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Square Flintfire
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 1937412994, guid: 7f80b705496458241ac633b5e36690f2, type: 3}
+  tileSprite: {fileID: -240291353, guid: e2986d43a3b4d8344ba3a30c63a5e0e2, type: 3}
   tileName: Square Flintfire

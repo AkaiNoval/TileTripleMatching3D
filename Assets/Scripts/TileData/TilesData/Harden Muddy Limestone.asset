@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Harden Muddy Limestone
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 646405086, guid: 7431db6b784fea148b7972656789ae5c, type: 3}
+  tileSprite: {fileID: -883700276, guid: 0bfab05adfc2bc0499def6d6a8f8ee41, type: 3}
   tileName: Harden Muddy Limestone

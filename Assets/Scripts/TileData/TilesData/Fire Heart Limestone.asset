@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Fire Heart Limestone
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: -875718191, guid: 4e0ad431a5ded4243a76dd0bff26aa24, type: 3}
+  tileSprite: {fileID: 1368959676, guid: 30a932a08bc2238438275e714e7c891a, type: 3}
   tileName: 'Fire Heart Limestone '

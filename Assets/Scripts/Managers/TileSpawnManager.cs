@@ -9,31 +9,38 @@ using UnityEngine;
 public class TileSpawnManager : MonoBehaviour
 {
     [SerializeField] Tile tileToSpawn;
-    [SerializeField] int amountToSpawn;
-    [Range(5f, 7f)]
-    [SerializeField] float spawnRadiusX;
-    [Range(5f, 7f)]
-    [SerializeField] float spawnRadiusY;
-    [Range(6f,10f)]
-    [SerializeField] float spawnRadiusZ;
-    [SerializeField] bool shouldDetectCollisionWhenSpawning;
-
-    const int maxSpawnAttempts = 100;
-    const float spawnCollisionCheckRadius = 0.5f;
+    [SerializeField] LevelDataSO levelDataSO;
+    [SerializeField] List<TileDataSO> tilesData;
+    const int MAX_SPAWN_ATTEMPTS = 100;
+    const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f;
 
     private void Start()
     {
-        int objectsSpawned = 0;
+        InitTile(levelDataSO);
+        tilesData = CacheTripleTileData(levelDataSO);
+    }
 
+    private void InitTile(LevelDataSO levelDataSO)
+    {
+        int objectsSpawned = 0;
+        int amountToSpawn = 0;
+
+        foreach (var tileData in levelDataSO.tileSpawnDatas)
+        {
+            amountToSpawn += tileData.setAmount * 3;
+        }
+        Debug.Log(amountToSpawn);
+
+        List<TileDataSO> tilesData = CacheTripleTileData(levelDataSO);
         for (int i = 0; i < amountToSpawn; i++)
         {
-            bool foundValidSpawnPoint = TrySpawnTile();
-
+            bool foundValidSpawnPoint = TrySpawnTile(levelDataSO, tilesData);
             if (!foundValidSpawnPoint)
             {
                 Debug.LogWarning("Max spawn attempts reached without finding a valid spawn point. Consider turning off spawnCollisionCheckRadius.");
                 break;
             }
+            tilesData.RemoveAt(0);
         }
 
         if (objectsSpawned == amountToSpawn)
@@ -42,15 +49,24 @@ public class TileSpawnManager : MonoBehaviour
         }
     }
 
-    private bool TrySpawnTile()
+    private bool TrySpawnTile(LevelDataSO levelData, List<TileDataSO> tilesData)
     {
         int spawnAttempts = 0;
 
-        while (spawnAttempts < maxSpawnAttempts)
+        float spawnRadiusX = levelData.spawnRadiusX;
+        float spawnRadiusY = levelData.spawnRadiusY;
+        float spawnRadiusZ = levelData.spawnRadiusZ;
+
+        bool shouldDetectCollisionWhenSpawning = levelData.shouldDetectCollisionWhenSpawning;
+
+        // Check if there are any TileSpawnData left
+        if (tilesData.Count == 0) return false;
+
+        while (spawnAttempts < MAX_SPAWN_ATTEMPTS)
         {
             //Vector3 spawnPoint = transform.position + Random.insideUnitSphere * spawnRadius;
             Vector3 spawnPoint = GetRandomSpawnPoint(spawnRadiusX, spawnRadiusY, spawnRadiusZ);
-            if (!shouldDetectCollisionWhenSpawning || !Physics.CheckSphere(spawnPoint, spawnCollisionCheckRadius))
+            if (!shouldDetectCollisionWhenSpawning || !Physics.CheckSphere(spawnPoint, SPAWN_COLLISION_CHECK_RADIUS))
             {
                 float randomYRotation = RandomTileRotation(0f, 360f);
                 float randomXRotation = RandomTileRotation(-20, 20);
@@ -58,14 +74,28 @@ public class TileSpawnManager : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(randomXRotation, randomYRotation, randomZRotation);
                 var spawnedTile = Instantiate(tileToSpawn, spawnPoint, rotation);
                 spawnedTile.transform.parent = transform;
-                spawnedTile.name = "Tile";
+                spawnedTile.TryGetComponent(out Tile tile);
+                tile.TileDataSO = tilesData[0];
+                spawnedTile.name = tilesData[0].tileName;
                 return true;
             }
-
             spawnAttempts++;
         }
         return false;
     }
+    List<TileDataSO> CacheTripleTileData(LevelDataSO levelDataSO)
+    {
+        List<TileDataSO> localTilesData = new List<TileDataSO>();
+        foreach (var tileSpawnData in levelDataSO.tileSpawnDatas)
+        {
+            for (int i = 0; i < tileSpawnData.setAmount * 3; i++)
+            {
+                localTilesData.Add(tileSpawnData.tileData);
+            }
+        }
+        return localTilesData;
+    }
+
     float RandomTileRotation(float minRotation, float maxRotation) => Random.Range(minRotation, maxRotation);
     Vector3 GetRandomSpawnPoint(float radiusX, float radiusY, float radiusZ)
     {
@@ -79,6 +109,10 @@ public class TileSpawnManager : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
+        if (levelDataSO == null) return;
+        float spawnRadiusX = levelDataSO.spawnRadiusX;
+        float spawnRadiusY = levelDataSO.spawnRadiusY;
+        float spawnRadiusZ = levelDataSO.spawnRadiusZ;
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadiusX * 2, spawnRadiusY * 2, spawnRadiusZ * 2));
     }

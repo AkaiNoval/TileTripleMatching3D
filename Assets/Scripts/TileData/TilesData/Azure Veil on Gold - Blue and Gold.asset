@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
-  m_Name: Citron-Crusted Limestone
+  m_Name: Azure Veil on Gold - Blue and Gold
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 1844562123, guid: 4e0ad431a5ded4243a76dd0bff26aa24, type: 3}
-  tileName: Citron-Crusted Limestone
+  tileSprite: {fileID: 1886994053, guid: 4eb030864d145de478d542416e293367, type: 3}
+  tileName: Azure Veil on Gold

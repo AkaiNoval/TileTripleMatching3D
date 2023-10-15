@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Greenstone Alloy
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 1162491368, guid: 4e0ad431a5ded4243a76dd0bff26aa24, type: 3}
+  tileSprite: {fileID: -1859285971, guid: e9afdcee3a07387408cc490f53f60797, type: 3}
   tileName: Greenstone Alloy

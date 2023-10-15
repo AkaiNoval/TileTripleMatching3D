@@ -338,4 +338,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileDataSO: {fileID: 0}
   tileName: 
-  tileSprite: {fileID: 0}
+  tileImage: {fileID: 4160343474509171062}

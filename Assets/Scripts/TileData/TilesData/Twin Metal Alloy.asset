@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Twin Metal Alloy
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: -522699336, guid: 7431db6b784fea148b7972656789ae5c, type: 3}
+  tileSprite: {fileID: 1436776622, guid: 30a932a08bc2238438275e714e7c891a, type: 3}
   tileName: Twin Metal Alloy

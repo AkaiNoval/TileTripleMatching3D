@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Peachy Gritstone
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: -1293838776, guid: 002d36b8f8e0b2f4cb0c7bd1b9305b8d, type: 3}
+  tileSprite: {fileID: -514610430, guid: 0bfab05adfc2bc0499def6d6a8f8ee41, type: 3}
   tileName: Peachy Gritstone

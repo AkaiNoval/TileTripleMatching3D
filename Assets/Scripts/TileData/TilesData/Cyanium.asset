@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
-  m_Name: Azure Veil on Gold
+  m_Name: Cyanium
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 1149780837, guid: a606a35f00e44774395a4716bae80785, type: 3}
-  tileName: Azure Veil on Gold
+  tileSprite: {fileID: 1333869021, guid: 4eb030864d145de478d542416e293367, type: 3}
+  tileName: Cyanium Ore

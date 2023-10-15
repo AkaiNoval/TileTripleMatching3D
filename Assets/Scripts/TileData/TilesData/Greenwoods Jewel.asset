@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511b959d9c492a94a8b2f565888329cf, type: 3}
   m_Name: Greenwoods Jewel
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: 907730114, guid: 002d36b8f8e0b2f4cb0c7bd1b9305b8d, type: 3}
+  tileSprite: {fileID: 684384885, guid: 5a6f3922260e1144c8abc606b1d60ab3, type: 3}
   tileName: Greenwoods Jewel
