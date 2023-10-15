@@ -10,14 +10,16 @@ public class TileSpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject tileToSpawn;
     [SerializeField] int amountToSpawn;
+    [Range(5f, 7f)]
     [SerializeField] float spawnRadiusX;
+    [Range(5f, 7f)]
     [SerializeField] float spawnRadiusY;
-    [Range(0f,10f)]
+    [Range(6f,10f)]
     [SerializeField] float spawnRadiusZ;
     [SerializeField] bool shouldDetectCollisionWhenSpawning;
 
     const int maxSpawnAttempts = 100;
-    const float spawnCollisionCheckRadius = 1;
+    const float spawnCollisionCheckRadius = 0.5f;
 
     private void Start()
     {
@@ -29,7 +31,7 @@ public class TileSpawnManager : MonoBehaviour
 
             if (!foundValidSpawnPoint)
             {
-                Debug.LogWarning("Max spawn attempts reached without finding a valid spawn point. Consider adjusting spawnCollisionCheckRadius or maxSpawnAttempts.");
+                Debug.LogWarning("Max spawn attempts reached without finding a valid spawn point. Consider turning off spawnCollisionCheckRadius.");
                 break;
             }
         }
