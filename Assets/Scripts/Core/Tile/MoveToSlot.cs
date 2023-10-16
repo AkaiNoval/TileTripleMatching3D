@@ -14,6 +14,7 @@ public class MoveToSlot : MonoBehaviour
     }
     private void OnMouseUp()
     {
+        if (!rbController.enabled) return;
         GoToTarget(Container.Instance);
     }
 
@@ -28,21 +29,21 @@ public class MoveToSlot : MonoBehaviour
     }
     Transform SetTargetSlot(List<Slot> usableSlots)
     {
-        List<TileDataSO> tempTileDataSOs = new();
+        List<Tile> tempTilesData = new();
         foreach (var slot in usableSlots)
         {
             if(slot.TileOccupied != null)
             {
-                tempTileDataSOs.Add(slot.TileOccupied);
+                tempTilesData.Add(slot.TileOccupied);
             }
         }
-        if (tempTileDataSOs.Count >= usableSlots.Count) return null;
+        if (tempTilesData.Count >= usableSlots.Count) return null;
 
         foreach (var slot in usableSlots)
         {
             if(slot.TileOccupied == null)
             {
-                slot.TileOccupied = tile.TileDataSO;
+                slot.TileOccupied = tile;
                 return slot.transform;
             }
         }       

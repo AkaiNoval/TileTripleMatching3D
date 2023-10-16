@@ -5,9 +5,13 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     [SerializeField] GameObject unlockImage;
-    [SerializeField] TileDataSO tileOccupied = null;
+    [SerializeField] Tile tileOccupied = null;
 
-    public TileDataSO TileOccupied { get => tileOccupied; set => tileOccupied = value; }
+    public Tile TileOccupied 
+    { 
+        get => tileOccupied; 
+        set => tileOccupied = value; 
+    }
 
     public void UnlockSlot()
     {
