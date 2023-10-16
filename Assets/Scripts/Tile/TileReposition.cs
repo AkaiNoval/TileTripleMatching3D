@@ -22,7 +22,7 @@ public class ScaleOnMouseOver : MonoBehaviour
     private void OnMouseEnter()
     {
         // Scale up by 10%
-        transform.localScale = originalScale * 1.1f;
+        transform.localScale = originalScale * 1.2f;
         isMouseOver = true;
     }
 
