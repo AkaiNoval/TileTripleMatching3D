@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd52c60fbe4928408e73db1504aacdd, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  tileSpawnDatas:
+  - tileData: {fileID: 11400000, guid: ae541fae23234e34587ce97164b9b9e5, type: 2}
+    setAmount: 3
+  - tileData: {fileID: 11400000, guid: 9acd8432a88d380469154adfaf8199fb, type: 2}
+    setAmount: 3
+  - tileData: {fileID: 11400000, guid: fc0e49c4ad9fc2d47843069fc66d8772, type: 2}
+    setAmount: 2
+  - tileData: {fileID: 11400000, guid: 8bd0c54f13b3eb94ab305d0e316219e5, type: 2}
+    setAmount: 2
+  spawnRadiusX: 5
+  spawnRadiusY: 7
+  spawnRadiusZ: 10
+  shouldDetectCollisionWhenSpawning: 0
