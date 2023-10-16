@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScaleOnMouseOver : MonoBehaviour
+public class RetransformOnMouseOver : MonoBehaviour
 {
     private Vector3 originalScale;
     private bool isMouseOver = false;
@@ -12,23 +12,18 @@ public class ScaleOnMouseOver : MonoBehaviour
 
     private void Update()
     {
-        if (isMouseOver)
-        {
-            // Continuously set the rotation to (0, current rotation around Y, 0)
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        }
+        if (isMouseOver) return;
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
     private void OnMouseEnter()
     {
-        // Scale up by 10%
         transform.localScale = originalScale * 1.2f;
         isMouseOver = true;
     }
 
     private void OnMouseExit()
     {
-        // Restore the original scale
         transform.localScale = originalScale;
         isMouseOver = false;
     }

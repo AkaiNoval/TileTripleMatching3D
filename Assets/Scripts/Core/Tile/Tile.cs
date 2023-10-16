@@ -23,12 +23,4 @@ public class Tile : MonoBehaviour
         tileName = tileDataSO.tileName;
         tileImage.sprite = tileDataSO.tileSprite;
     }
-    void OnMouseEnter()
-    {
-        // Code to execute when the mouse enters the object
-    }
-    void OnMouseExit()
-    {
-        // Code to execute when the mouse enters the object
-    }
 }
