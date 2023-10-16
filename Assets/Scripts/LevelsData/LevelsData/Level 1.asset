@@ -22,6 +22,6 @@ MonoBehaviour:
   - tileData: {fileID: 11400000, guid: 8bd0c54f13b3eb94ab305d0e316219e5, type: 2}
     setAmount: 2
   spawnRadiusX: 5
-  spawnRadiusY: 7
-  spawnRadiusZ: 10
+  spawnRadiusY: 6
+  spawnRadiusZ: 6
   shouldDetectCollisionWhenSpawning: 0

@@ -74,7 +74,7 @@ public class TileSpawnManager : MonoBehaviour
                 spawnedTile.transform.parent = transform;
                 spawnedTile.TryGetComponent(out Tile tile);
                 tile.TileDataSO = tilesData[0];
-                spawnedTile.name = tilesData[0].tileName;
+                spawnedTile.name = tilesData[0].TileName;
                 return true;
             }
             spawnAttempts++;
