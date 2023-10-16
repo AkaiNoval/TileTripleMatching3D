@@ -20,8 +20,8 @@ public class Tile : MonoBehaviour
     }
     private void InitTile(TileDataSO tileDataSO)
     {
-        tileName = tileDataSO.TileName;
-        tileImage.sprite = tileDataSO.TileSprite;
+        tileName = tileDataSO.tileName;
+        tileImage.sprite = tileDataSO.tileSprite;
     }
     void OnMouseEnter()
     {
