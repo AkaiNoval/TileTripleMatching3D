@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 2019381233}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &256684411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 1132636603}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &840360359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 1676694164}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &921352231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 150540142}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &1371133607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f7acfb324744aee249bf4e51fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSlot: 3
+  startingSlot: 7
   allSlots:
   - {fileID: 1315964800}
   - {fileID: 840360363}
@@ -1985,7 +1985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 1848494266}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &1538087196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,7 +2363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 685695622}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &2019381233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 256684411}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &2029082413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockImage: {fileID: 272914839}
-  usable: 0
+  tileOccupied: {fileID: 0}
 --- !u!1 &2035769996
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MoveToSlot : MonoBehaviour
 {
     Tile tile;
-    Rigidbody rb;
+    TileRigidbodyController rbController;
     private void Awake()
     {
         tile = GetComponent<Tile>();
-        rb = GetComponent<Rigidbody>();
+        rbController = GetComponent<TileRigidbodyController>();
     }
     private void OnMouseUp()
     {
@@ -21,7 +22,7 @@ public class MoveToSlot : MonoBehaviour
         Transform targetTransform = null;
         targetTransform = SetTargetSlot(container.UsableSlots);
         if (targetTransform == null) return;
-        rb.isKinematic = true;
+        rbController.enabled = false;
         transform.rotation = Quaternion.identity;
         transform.position = targetTransform.position;
     }
