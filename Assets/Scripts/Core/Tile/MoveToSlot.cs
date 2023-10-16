@@ -6,11 +6,11 @@ using DG.Tweening;
 public class MoveToSlot : MonoBehaviour
 {
     Tile tile;
-    TileRigidbodyController rbController;
+    TileCollisionController rbController;
     private void Awake()
     {
         tile = GetComponent<Tile>();
-        rbController = GetComponent<TileRigidbodyController>();
+        rbController = GetComponent<TileCollisionController>();
     }
     private void OnMouseUp()
     {
@@ -23,9 +23,11 @@ public class MoveToSlot : MonoBehaviour
         Transform targetTransform = null;
         targetTransform = SetTargetSlot(container.UsableSlots);
         if (targetTransform == null) return;
+        /* Turn on Kinemetic for the tile */
         rbController.enabled = false;
-        transform.rotation = Quaternion.identity;
-        transform.position = targetTransform.position;
+        transform.DORotate(Vector3.zero, 0.3f);
+        transform.DOScale(transform.localScale * 0.7f, 0.3f);
+        transform.DOMove(targetTransform.position, 0.5f);
     }
     Transform SetTargetSlot(List<Slot> usableSlots)
     {
@@ -49,4 +51,5 @@ public class MoveToSlot : MonoBehaviour
         }       
         return null;
     }
+
 }
