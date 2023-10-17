@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] TileDataSO tileDataSO;
-    [SerializeField] string tileName;
+    TileDataSO tileDataSO;
+    string tileName;
     [SerializeField] Image tileImage;
 
     public TileDataSO TileDataSO 

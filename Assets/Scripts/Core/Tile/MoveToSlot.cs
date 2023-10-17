@@ -1,50 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using Unity.VisualScripting;
 
 public class MoveToSlot : MonoBehaviour
 {
     Tile tile;
-    Rigidbody rb;
+    TileCollisionController rbController;
+    bool isMouseOver;
     private void Awake()
     {
         tile = GetComponent<Tile>();
-        rb = GetComponent<Rigidbody>();
+        rbController = GetComponent<TileCollisionController>();
     }
-    private void OnMouseUp()
+    void Update()
     {
-        GoToTarget(Container.Instance);
+        if (Input.GetMouseButtonUp(0) && isMouseOver)
+        {
+            if (!rbController.enabled) return;
+            GoToTarget(Container.Instance);
+        }
     }
+    private void OnMouseOver() => isMouseOver = true;
+    private void OnMouseExit() => isMouseOver = false;
 
     void GoToTarget(Container container)
     {
         Transform targetTransform = null;
         targetTransform = SetTargetSlot(container.UsableSlots);
         if (targetTransform == null) return;
-        rb.isKinematic = true;
-        transform.rotation = Quaternion.identity;
-        transform.position = targetTransform.position;
+        /* Turn on Kinemetic for the tile */
+        rbController.enabled = false;
+        transform.DORotate(Vector3.zero, 0.3f);
+        transform.DOScale(transform.localScale * 0.7f, 0.3f);
+        transform.DOMove(targetTransform.position, 0.5f);
     }
     Transform SetTargetSlot(List<Slot> usableSlots)
     {
-        List<TileDataSO> tempTileDataSOs = new();
+        List<Tile> tempTilesData = new();
         foreach (var slot in usableSlots)
         {
             if(slot.TileOccupied != null)
             {
-                tempTileDataSOs.Add(slot.TileOccupied);
+                tempTilesData.Add(slot.TileOccupied);
             }
         }
-        if (tempTileDataSOs.Count >= usableSlots.Count) return null;
+        if (tempTilesData.Count >= usableSlots.Count) return null;
 
         foreach (var slot in usableSlots)
         {
             if(slot.TileOccupied == null)
             {
-                slot.TileOccupied = tile.TileDataSO;
+                slot.TileOccupied = tile;
                 return slot.transform;
             }
         }       
         return null;
     }
+
 }

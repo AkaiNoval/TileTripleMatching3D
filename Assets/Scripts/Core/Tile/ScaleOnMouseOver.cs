@@ -15,13 +15,11 @@ public class RetransformOnMouseOver : MonoBehaviour
         if (isMouseOver) return;
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
-
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
-        transform.localScale = originalScale * 1.2f;
+        transform.localScale = originalScale * 1.1f;
         isMouseOver = true;
     }
-
     private void OnMouseExit()
     {
         transform.localScale = originalScale;

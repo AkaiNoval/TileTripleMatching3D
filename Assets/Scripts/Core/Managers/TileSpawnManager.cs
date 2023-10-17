@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// DESCRIPTION:
-/// NOTE: If the amountToSpawn is too high, you need to consider increase the spawnRadius or decrease the spawnCollisionCheckRadius
-/// </summary>
+ /* NOTE: If the amountToSpawn is too high,and you get a warning. 
+  * You need to consider increase the spawnRadius or turning off the spawnCollisionCheckRadius*/
 public class TileSpawnManager : MonoBehaviour
 {
     [SerializeField] Tile tileToSpawn;

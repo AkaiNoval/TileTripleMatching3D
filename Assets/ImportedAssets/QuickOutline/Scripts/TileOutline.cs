@@ -13,7 +13,7 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 
-public class Outline : MonoBehaviour {
+public class TileOutline : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
 
   public enum Mode {
@@ -307,7 +307,7 @@ public class Outline : MonoBehaviour {
     }
   }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         this.enabled = true;
     }
