@@ -16,6 +16,12 @@ public class LevelDataSO : ScriptableObject
     public float spawnRadiusZ;
     [Tooltip("For checking free space when spawning, if there is a warning, please turning this off")]
     public bool shouldDetectCollisionWhenSpawning;
+    [Header("Containers Info")]
+    [Tooltip("How many starting slots do players have?")]
+    [Range(3, 8)]
+    public int startingSlot;
+    [Tooltip("Can player unlock new slots?")]
+    public bool canUnlockNewSlot;
 }
 
 [Serializable]

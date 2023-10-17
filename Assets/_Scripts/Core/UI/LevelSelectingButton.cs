@@ -8,5 +8,6 @@ public class LevelSelectingButton : MonoBehaviour
     public void SelectingLevel()
     {
         TileSpawnManager.Instance.LevelDataSO = levelData;
+        Container.Instance.LevelDataSO = levelData;
     }
 }

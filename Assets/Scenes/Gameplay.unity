@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 9b57a064eee0b0b44a60fe14f5858e77, type: 2}
 --- !u!1 &354327734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: e6a493325abe80c47be8714af2e42289, type: 2}
 --- !u!1 &430562521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,15 +3100,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Starting with 7 slot, unlockable new slot, and more time.
+  m_text: 'Starting with 7 slots, unlockable new slots, and more time.
 
+    
 
     Starting
-    with 5 slot, unlockable new slot, but less time.
+    with 5 slots, unlockable new slots, but less time.
 
+    
 
-    Starting with 3 slot,
-    can''t unlock new slot, and very few amount of time'
+    Starting with
+    3 slots, unable to unlock new slots, and very little time.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46880eec47a0d7541a9cc1a47ca6d0c1, type: 2}
   m_sharedMaterial: {fileID: 2403517239901026404, guid: 46880eec47a0d7541a9cc1a47ca6d0c1, type: 2}
@@ -3979,7 +3981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 274b1f31d98965341a7082a4dba4948e, type: 2}
 --- !u!1 &873961676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4455,7 +4457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 6111e708999de7c488e141fad41c8035, type: 2}
 --- !u!1 &998356808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,7 +5521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 748d5016125f0c84393f8bff35212f4d, type: 2}
 --- !u!1 &1253972039
 GameObject:
   m_ObjectHideFlags: 0
@@ -6000,7 +6002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 4246cb31f0c331347bbe8ac0557003b0, type: 2}
 --- !u!1 &1371133607
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,7 +6048,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f7acfb324744aee249bf4e51fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDataSO: {fileID: 0}
   startingSlot: 8
+  canUnlockNewSlot: 1
   allSlots:
   - {fileID: 1315964800}
   - {fileID: 840360363}
@@ -6058,7 +6062,6 @@ MonoBehaviour:
   - {fileID: 2029082417}
   usableSlots: []
   assignedTiles: []
-  canUnlockNewSlot: 1
 --- !u!1 &1389243397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6440,7 +6443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 8489a79c062425e4e9c3e3307a0ba81c, type: 2}
 --- !u!1 &1489447151
 GameObject:
   m_ObjectHideFlags: 0
@@ -8718,7 +8721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f736b64e08fa94d95f794b00dbd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 31bb7aeffd79b6c4fb5b50e4e5c50e4c, type: 2}
 --- !u!1 &1995734845
 GameObject:
   m_ObjectHideFlags: 0

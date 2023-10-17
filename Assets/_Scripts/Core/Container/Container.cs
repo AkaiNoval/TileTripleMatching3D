@@ -9,10 +9,10 @@ public class Container : Singleton<Container>
     [SerializeField] LevelDataSO levelDataSO;
     [Range(3,8)]
     [SerializeField] int startingSlot;
+    [SerializeField] bool canUnlockNewSlot;
     [SerializeField] List<Slot> allSlots;
     [SerializeField] List<Slot> usableSlots = new List<Slot>();
     [SerializeField] List<Tile> assignedTiles = new List<Tile>();
-    [SerializeField] bool canUnlockNewSlot;
 
     public List<Slot> UsableSlots 
     { 
@@ -27,11 +27,21 @@ public class Container : Singleton<Container>
             assignedTiles = value;
         }
     }
-
-    private void Start()
+    public LevelDataSO LevelDataSO 
+    { 
+        get => levelDataSO;
+        set 
+        {
+            GetDataFromLevelData(value);
+            InitStartingSlots();
+            InitLockedSlots();
+            levelDataSO = value; 
+        }
+    }
+    private void GetDataFromLevelData(LevelDataSO levelDataSO)
     {
-        InitStartingSlots();
-        InitLockedSlots();
+        startingSlot = levelDataSO.startingSlot;
+        canUnlockNewSlot = levelDataSO.canUnlockNewSlot;
     }
     private void InitStartingSlots()
     {
@@ -151,6 +161,7 @@ public class Container : Singleton<Container>
             SortingAssignedTilesPosition();
         }
     }
+
 
     private void UnlockLockedSlot()
     {
