@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileSpawnDatas:
   - tileData: {fileID: 11400000, guid: ae541fae23234e34587ce97164b9b9e5, type: 2}
-    setAmount: 3
+    setAmount: 2
   - tileData: {fileID: 11400000, guid: 9acd8432a88d380469154adfaf8199fb, type: 2}
-    setAmount: 3
+    setAmount: 2
   - tileData: {fileID: 11400000, guid: fc0e49c4ad9fc2d47843069fc66d8772, type: 2}
     setAmount: 2
   - tileData: {fileID: 11400000, guid: 8bd0c54f13b3eb94ab305d0e316219e5, type: 2}
     setAmount: 2
+  - tileData: {fileID: 11400000, guid: 0b214413defe68e45b38217582f2cda7, type: 2}
+    setAmount: 2
   spawnRadiusX: 5
   spawnRadiusY: 7
-  spawnRadiusZ: 10
+  spawnRadiusZ: 7
   shouldDetectCollisionWhenSpawning: 0

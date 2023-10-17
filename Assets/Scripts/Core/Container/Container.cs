@@ -144,6 +144,7 @@ public class Container : Singleton<Container>
             tileToRemove.gameObject.SetActive(false);
             assignedTiles.Remove(tileToRemove);
         }
+        /* Move again if there is a match */
         if (tilesToRemove.Count == 3)
         {
             SortingAssignedTilesPosition();
