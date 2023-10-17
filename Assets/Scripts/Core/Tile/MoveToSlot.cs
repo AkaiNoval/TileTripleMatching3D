@@ -2,21 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class MoveToSlot : MonoBehaviour
 {
     Tile tile;
     TileCollisionController rbController;
+    bool isMouseOver;
     private void Awake()
     {
         tile = GetComponent<Tile>();
         rbController = GetComponent<TileCollisionController>();
     }
-    private void OnMouseUp()
+    void Update()
     {
-        if (!rbController.enabled) return;
-        GoToTarget(Container.Instance);
+        if (Input.GetMouseButtonUp(0) && isMouseOver)
+        {
+            if (!rbController.enabled) return;
+            GoToTarget(Container.Instance);
+        }
     }
+    private void OnMouseOver() => isMouseOver = true;
+    private void OnMouseExit() => isMouseOver = false;
 
     void GoToTarget(Container container)
     {

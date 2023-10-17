@@ -307,7 +307,7 @@ public class TileOutline : MonoBehaviour {
     }
   }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         this.enabled = true;
     }

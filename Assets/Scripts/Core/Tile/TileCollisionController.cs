@@ -13,12 +13,14 @@ public class TileCollisionController : MonoBehaviour
     }
     private void OnEnable() 
     { 
-        rb.isKinematic = false;
+        rb.isKinematic = false;       
         tileCollider.enabled = true;
     }
     private void OnDisable() 
-    { 
+    {
+        /* Control the the kinemetic of the tile for not letting it falls through the ground */
         rb.isKinematic = true;
+        /* Make sure its not gonna collide with other tile or any bounder*/
         tileCollider.enabled = false;
     }
 
