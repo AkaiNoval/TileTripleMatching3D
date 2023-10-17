@@ -4,16 +4,21 @@ using UnityEngine;
 
  /* NOTE: If the amountToSpawn is too high,and you get a warning. 
   * You need to consider increase the spawnRadius or turning off the spawnCollisionCheckRadius*/
-public class TileSpawnManager : MonoBehaviour
+public class TileSpawnManager : Singleton<TileSpawnManager>
 {
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
     const int MAX_SPAWN_ATTEMPTS = 100;
     const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f;
 
-    private void Start()
-    {
-        InitTile(levelDataSO);
+    public LevelDataSO LevelDataSO 
+    { 
+        get => levelDataSO;
+        set 
+        {
+            InitTile(value);
+            levelDataSO = value; 
+        }
     }
 
     private void InitTile(LevelDataSO levelDataSO)
@@ -91,7 +96,6 @@ public class TileSpawnManager : MonoBehaviour
         }
         return localTilesData;
     }
-
     float RandomTileRotation(float minRotation, float maxRotation) => Random.Range(minRotation, maxRotation);
     Vector3 GetRandomSpawnPoint(float radiusX, float radiusY, float radiusZ)
     {
@@ -105,10 +109,10 @@ public class TileSpawnManager : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        if (levelDataSO == null) return;
-        float spawnRadiusX = levelDataSO.spawnRadiusX;
-        float spawnRadiusY = levelDataSO.spawnRadiusY;
-        float spawnRadiusZ = levelDataSO.spawnRadiusZ;
+        if (LevelDataSO == null) return;
+        float spawnRadiusX = LevelDataSO.spawnRadiusX;
+        float spawnRadiusY = LevelDataSO.spawnRadiusY;
+        float spawnRadiusZ = LevelDataSO.spawnRadiusZ;
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadiusX * 2, spawnRadiusY * 2, spawnRadiusZ * 2));
     }
