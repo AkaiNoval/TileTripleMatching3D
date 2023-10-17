@@ -9,7 +9,16 @@ public class MoveToSlot : MonoBehaviour
     Tile tile;
     TileCollisionController rbController;
     bool isMouseOver;
+    bool isMoving;
+
     Vector3 desiredScale = Vector3.one;
+
+    public bool IsMoving 
+    { 
+        get => isMoving; 
+        private set => isMoving = value; 
+    }
+
     private void Awake()
     {
         tile = GetComponent<Tile>();
@@ -34,12 +43,19 @@ public class MoveToSlot : MonoBehaviour
     }
     public void MoveToNewPostion(Transform targetPosition)
     {
+        IsMoving = true;
         Sequence sequence = DOTween.Sequence();
         rbController.enabled = false;
         sequence.Join(transform.DORotate(Vector3.zero, 0.3f));
         sequence.Join(transform.DOScale(desiredScale, 0.3f));
         sequence.Join(transform.DOMove(targetPosition.position, 0.5f));
+        sequence.OnComplete(() => 
+        {
+            IsMoving = false;
+            Container.Instance.TileTripleMatching();
+        });
         sequence.Play();
+
     }
 
     //void GoToTarget(Container container)
