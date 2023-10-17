@@ -68,14 +68,9 @@ public class Container : Singleton<Container>
         }
     }
 
-    public void SortingAssignedTilesPosition(Tile tile)
+    public void SortingAssignedTilesPosition()
     {
         AssignedTiles = AssignedTiles.OrderBy(tile => tile.TileDataSO.name).ToList();
-        RearrangeTiles();
-    }
-    
-    void RearrangeTiles()
-    {
         if (assignedTiles.Count > usableSlots.Count)
         {
             Debug.LogError("Tile list and slot list have different sizes.");
@@ -90,6 +85,7 @@ public class Container : Singleton<Container>
             mover.MoveToNewPostion(targetTransform);
         }
     }
+
 
     private void UnlockLockedSlot()
     {

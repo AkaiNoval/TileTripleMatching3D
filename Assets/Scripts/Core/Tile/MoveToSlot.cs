@@ -14,7 +14,7 @@ public class MoveToSlot : MonoBehaviour
     {
         tile = GetComponent<Tile>();
         rbController = GetComponent<TileCollisionController>();
-        desiredScale = transform.localScale * 0.7f;
+        desiredScale = transform.localScale*0.7f;
     }
     void Update()
     {
@@ -30,14 +30,16 @@ public class MoveToSlot : MonoBehaviour
     {
         if (container.AssignedTiles.Count >= container.UsableSlots.Count) return;
         container.AssignedTiles.Add(tile);
-        container.SortingAssignedTilesPosition(tile);    
+        container.SortingAssignedTilesPosition();    
     }
     public void MoveToNewPostion(Transform targetPosition)
     {
+        Sequence sequence = DOTween.Sequence();
         rbController.enabled = false;
-        transform.DORotate(Vector3.zero, 0.3f);
-        transform.DOScale(desiredScale, 0.3f);
-        transform.DOMove(targetPosition.position, 0.5f);
+        sequence.Join(transform.DORotate(Vector3.zero, 0.3f));
+        sequence.Join(transform.DOScale(desiredScale, 0.3f));
+        sequence.Join(transform.DOMove(targetPosition.position, 0.5f));
+        sequence.Play();
     }
 
     //void GoToTarget(Container container)
