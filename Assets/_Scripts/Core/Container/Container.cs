@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Container : Singleton<Container>
 {
+    [SerializeField] LevelDataSO levelDataSO;
     [Range(3,8)]
     [SerializeField] int startingSlot;
     [SerializeField] List<Slot> allSlots;
