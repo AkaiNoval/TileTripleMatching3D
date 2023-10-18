@@ -6,23 +6,51 @@ using UnityEngine;
   * You need to consider increase the spawnRadius or turning off the spawnCollisionCheckRadius*/
 public class TileManager : Singleton<TileManager>
 {
+    #region Fields
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
     //TODO: SHOULD CLEAR ALL THE TILE WHEN CHOOSING ANOTHER SCENE
-    List<Tile> allActiveTile = new List<Tile>();
-    const int MAX_SPAWN_ATTEMPTS = 100;
-    const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f;
+    [SerializeField] List<Tile> allActiveTile = new List<Tile>();
 
-    public LevelDataSO LevelDataSO 
-    { 
+    const int MAX_SPAWN_ATTEMPTS = 100;
+    const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f; 
+    #endregion
+
+    #region Properties
+    public LevelDataSO LevelDataSO
+    {
         get => levelDataSO;
-        set 
+        set
         {
             InitTile(value);
-            levelDataSO = value; 
+            levelDataSO = value;
         }
     }
 
+    public List<Tile> AllActiveTile
+    {
+        get => allActiveTile;
+        set => allActiveTile = value;
+    }
+    #endregion
+
+    #region WinningEvent
+    private void OnEnable()
+    {
+        Container.OnTileMatching += CheckForWinCondition;
+    }
+    private void OnDisable()
+    {
+        Container.OnTileMatching -= CheckForWinCondition;
+    }
+    private void CheckForWinCondition()
+    {
+        if (allActiveTile.Count != 0) return;
+        GameManager.Instance.UpdateGameState(GameState.Victory);
+    }
+    #endregion
+
+    #region InitilizeTiles
     private void InitTile(LevelDataSO levelDataSO)
     {
         int objectsSpawned = 0;
@@ -108,6 +136,9 @@ public class TileManager : Singleton<TileManager>
 
         return randomPoint;
     }
+    #endregion
+
+    #region DebugSpawningZone
     private void OnDrawGizmosSelected()
     {
         if (LevelDataSO == null) return;
@@ -116,5 +147,6 @@ public class TileManager : Singleton<TileManager>
         float spawnRadiusZ = LevelDataSO.spawnRadiusZ;
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadiusX * 2, spawnRadiusY * 2, spawnRadiusZ * 2));
-    }
+    } 
+    #endregion
 }
