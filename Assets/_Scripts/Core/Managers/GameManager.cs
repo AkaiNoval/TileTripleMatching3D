@@ -30,31 +30,13 @@ public class GameManager : Singleton<GameManager>
             case GameState.Playing:
                 break;
             case GameState.Victory:
-                VictoryStateHandle();
                 break;
             case GameState.Lose:
-                LoseStateHandle();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
         OnGameStateChanged?.Invoke(newState);
-    }
-    private void MenuStateHandle()
-    {
-
-    }
-    private void PlayingStateHandle()
-    {
-
-    }
-    private void VictoryStateHandle()
-    {
-        Debug.Log("You won the game");
-    }
-    private void LoseStateHandle()
-    {
-        Debug.Log("You lost the game");
     }
 
 }

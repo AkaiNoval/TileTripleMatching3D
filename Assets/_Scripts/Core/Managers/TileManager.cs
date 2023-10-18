@@ -9,6 +9,7 @@ public class TileManager : Singleton<TileManager>
     #region Fields
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
+    [SerializeField] List<LevelDataSO> AlllevelDataSO;
     //TODO: SHOULD CLEAR ALL THE TILE WHEN CHOOSING ANOTHER SCENE
     [SerializeField] List<Tile> allActiveTile = new List<Tile>();
 
@@ -141,6 +142,12 @@ public class TileManager : Singleton<TileManager>
     #region UI
     public void RestartLevel()
     {
+        ClearTile();
+        LevelDataSO = levelDataSO;
+    } 
+
+    public void ClearTile()
+    {
         // Create a new list to store the tiles to deactivate
         List<Tile> tilesToDeactivate = new List<Tile>();
 
@@ -158,8 +165,23 @@ public class TileManager : Singleton<TileManager>
 
         // Optionally, you can clear the allActiveTile list
         allActiveTile.Clear();
-        LevelDataSO = levelDataSO;
-    } 
+    }
+
+    public void GoToNextLeveButton()
+    {
+        // Check if the current level data is in the list
+        if (AlllevelDataSO.Contains(levelDataSO))
+        {
+            int currentIndex = AlllevelDataSO.IndexOf(levelDataSO);
+            int nextIndex = (currentIndex + 1) % AlllevelDataSO.Count; // Wrap around if at the end of the list
+            LevelDataSO = AlllevelDataSO[nextIndex];
+            Debug.Log(AlllevelDataSO[nextIndex].name);
+        }
+        else
+        {
+            Debug.LogWarning("Current LevelDataSO is not in the AlllevelDataSO list.");
+        }
+    }
     #endregion
 
     #region DebugSpawningZone
