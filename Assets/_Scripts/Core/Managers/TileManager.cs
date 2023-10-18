@@ -4,7 +4,7 @@ using UnityEngine;
 
  /* NOTE: If the amountToSpawn is too high,and you get a warning. 
   * You need to consider increase the spawnRadius or turning off the spawnCollisionCheckRadius*/
-public class TileSpawnManager : Singleton<TileSpawnManager>
+public class TileManager : Singleton<TileManager>
 {
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
@@ -62,7 +62,6 @@ public class TileSpawnManager : Singleton<TileSpawnManager>
 
         bool shouldDetectCollisionWhenSpawning = levelData.shouldDetectCollisionWhenSpawning;
 
-        // Check if there are any TileSpawnData left
         if (tilesData.Count == 0) return false;
 
         while (spawnAttempts < MAX_SPAWN_ATTEMPTS)

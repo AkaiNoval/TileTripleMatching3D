@@ -12,7 +12,7 @@ public class Container : Singleton<Container>
     [SerializeField] bool canUnlockNewSlot;
     [SerializeField] List<Slot> allSlots;
     [SerializeField] List<Slot> usableSlots = new List<Slot>();
-    [SerializeField] List<Tile> assignedTiles = new List<Tile>(); 
+    [SerializeField] List<Tile> assignedTiles = new List<Tile>();
     #endregion
 
     #region Properties
@@ -98,6 +98,7 @@ public class Container : Singleton<Container>
     } 
     #endregion
 
+
     #region SortingAndMatching
     public void SortingAssignedTilesPosition()
     {
@@ -116,8 +117,9 @@ public class Container : Singleton<Container>
             tile.TryGetComponent(out MoveToSlot mover);
             mover.MoveToNewPostion(targetTransform);
         }
+        Debug.Log("Sorting!");
     }
-    public void TileTripleMatching()
+    public bool CanTileTripleMatching()
     {
         List<TileDataSO> assignedTileDataToRemove = new List<TileDataSO>();
 
@@ -166,6 +168,90 @@ public class Container : Singleton<Container>
                     }
                     tilesToRemove.Add(tile);
                 }
+            }
+        }
+
+        //TODO: Kick these back into the pool
+        /* Disable the associated GameObjects of the removed tiles */
+        foreach (var tileToRemove in tilesToRemove)
+        {
+            tileToRemove.gameObject.SetActive(false);
+            assignedTiles.Remove(tileToRemove);
+        }
+
+        /* Sort again if there is a match */
+        if (tilesToRemove.Count == 3)
+        {
+            Debug.Log("There is a match, MATCH IT!");
+            SortingAssignedTilesPosition();
+            return true; // Return true if a match was found
+        }
+
+        return false; // Return false if no match was found
+    }
+
+    public void TileTripleMatching()
+    {
+        List<TileDataSO> assignedTileDataToRemove = new List<TileDataSO>();
+
+        foreach (var tile in assignedTiles)
+        {
+                MoveToSlot mover;
+                if (tile.TryGetComponent(out mover))
+                {
+                    if (mover.IsMoving)
+                    {
+                    Debug.Log("There is a moving tile, Stop checking");
+                        return;
+                    }
+                }
+        }
+        /* Count the occurrences of each unique TileDataSO in the list */
+        Dictionary<TileDataSO, int> tileDataCount = new Dictionary<TileDataSO, int>();
+
+        foreach (var tile in assignedTiles)
+        {
+            if (tile.TryGetComponent(out MoveToSlot mover) && mover.IsMoving)
+            {
+                continue;
+            }
+            TileDataSO tileData = tile.TileDataSO;
+            if (tileDataCount.ContainsKey(tileData))
+            {
+                tileDataCount[tileData]++;
+            }
+            else
+            {
+                tileDataCount[tileData] = 1;
+            }
+        }
+
+        /* Identify TileDataSO that appears three or more times */
+        foreach (var kvp in tileDataCount)
+        {
+            if (kvp.Value >= 3)
+            {
+                assignedTileDataToRemove.Add(kvp.Key);
+            }
+        }
+
+        /* Remove identified TileDataSO from the list */
+        List<Tile> tilesToRemove = new List<Tile>();
+
+        foreach (var tile in assignedTiles)
+        {
+            if (assignedTileDataToRemove.Contains(tile.TileDataSO))
+            {
+                MoveToSlot mover;
+                if (tile.TryGetComponent(out mover))
+                {
+                    if (mover.IsMoving)
+                    {
+                        Debug.Log($"Do not remove the {tile.name} if it's moving");
+                        continue;
+                    }
+                    tilesToRemove.Add(tile);
+                }
 
             }
         }
@@ -178,8 +264,20 @@ public class Container : Singleton<Container>
         }
 
         /* Sort again if there is a match */
-        if (tilesToRemove.Count != 3) return;
-        SortingAssignedTilesPosition();
-    } 
+        if (tilesToRemove.Count == 3)
+        {
+            Debug.Log("There is a match, MATCH IT!");
+            SortingAssignedTilesPosition();
+            return;
+        }
+        else
+        {
+            if(assignedTiles.Count >= usableSlots.Count)
+            {
+                GameManager.Instance.UpdateGameState(GameState.Lose);
+            }
+        }
+    }
     #endregion
+
 }
