@@ -5,17 +5,26 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     [SerializeField] GameObject unlockImage;
-    [SerializeField] Tile tileOccupied = null;
 
-    public Tile TileOccupied 
-    { 
-        get => tileOccupied; 
-        set => tileOccupied = value; 
+    private void Start()
+    {
+        Container.Instance.AllSlots.Add(this);
     }
-
     public void UnlockSlot()
     {
         unlockImage.SetActive(false);
         Container.Instance.UsableSlots.Add(this);
+    }
+    public void LockSlot()
+    {
+        unlockImage.SetActive(true);
+        if (!Container.Instance.UsableSlots.Contains(this)) return;
+        Container.Instance.UsableSlots.Remove(this);
+    }
+    public void ButtonUnlockSlot()
+    {
+        //TODO: Do something about currency here
+        //TODO: Animation or use VFX here
+        UnlockSlot();
     }
 }

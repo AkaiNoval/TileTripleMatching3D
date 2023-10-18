@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [DisallowMultipleComponent]
 
@@ -309,6 +310,7 @@ public class TileOutline : MonoBehaviour {
 
     private void OnMouseOver()
     {
+        if (MouseOverUIUtil.IsMouseOverUIWithIgnores()) return;
         this.enabled = true;
     }
     private void OnMouseExit()

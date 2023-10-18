@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RetransformOnMouseOver : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class RetransformOnMouseOver : MonoBehaviour
     }
     private void OnMouseOver()
     {
+        if (MouseOverUIUtil.IsMouseOverUIWithIgnores()) return;
         transform.localScale = originalScale * 1.1f;
         isMouseOver = true;
     }

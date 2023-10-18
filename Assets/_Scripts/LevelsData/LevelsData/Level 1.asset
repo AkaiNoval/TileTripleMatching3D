@@ -27,3 +27,5 @@ MonoBehaviour:
   spawnRadiusY: 7
   spawnRadiusZ: 7
   shouldDetectCollisionWhenSpawning: 0
+  startingSlot: 7
+  canUnlockNewSlot: 1
