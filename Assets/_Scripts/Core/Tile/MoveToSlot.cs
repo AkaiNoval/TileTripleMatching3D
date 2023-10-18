@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class MoveToSlot : MonoBehaviour
 {
@@ -33,8 +34,15 @@ public class MoveToSlot : MonoBehaviour
             AssignToContainer(Container.Instance);
         }
     }
-    private void OnMouseOver() => isMouseOver = true;
-    private void OnMouseExit() => isMouseOver = false;
+    private void OnMouseOver() 
+    {
+        if (MouseOverUIUtil.IsMouseOverUIWithIgnores()) return;
+        isMouseOver = true; 
+    }
+    private void OnMouseExit()
+    {
+        isMouseOver = false;
+    }
     void AssignToContainer(Container container)
     {
         if (container.AssignedTiles.Count >= container.UsableSlots.Count) return;
