@@ -1,43 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Container : Singleton<Container>
 {
+    #region Fields
     [SerializeField] LevelDataSO levelDataSO;
-    [Range(3,8)]
+    [Range(3, 8)]
     [SerializeField] int startingSlot;
     [SerializeField] bool canUnlockNewSlot;
     [SerializeField] List<Slot> allSlots;
     [SerializeField] List<Slot> usableSlots = new List<Slot>();
-    [SerializeField] List<Tile> assignedTiles = new List<Tile>();
+    [SerializeField] List<Tile> assignedTiles = new List<Tile>(); 
+    #endregion
 
-    public List<Slot> UsableSlots 
-    { 
-        get => usableSlots; 
-        private set => usableSlots = value; 
+    #region Properties
+    public List<Slot> UsableSlots
+    {
+        get => usableSlots;
+        private set => usableSlots = value;
     }
-    public List<Tile> AssignedTiles 
-    { 
+    public List<Tile> AssignedTiles
+    {
         get => assignedTiles;
-        set 
+        set
         {
             assignedTiles = value;
         }
     }
-    public LevelDataSO LevelDataSO 
-    { 
+    public LevelDataSO LevelDataSO
+    {
         get => levelDataSO;
-        set 
+        set
         {
             GetDataFromLevelData(value);
             InitStartingSlots();
             InitLockedSlots();
-            levelDataSO = value; 
+            levelDataSO = value;
         }
     }
+    #endregion
+
+    #region Initialize
     private void GetDataFromLevelData(LevelDataSO levelDataSO)
     {
         startingSlot = levelDataSO.startingSlot;
@@ -45,15 +50,12 @@ public class Container : Singleton<Container>
     }
     private void InitStartingSlots()
     {
-        if(allSlots.Count == 0)
+        if (allSlots.Count == 0)
         {
             Debug.LogWarning("Did you forget to assign slots into the container?");
             return;
         }
-        foreach (Slot slot in allSlots)
-        {
-            slot.gameObject.SetActive(false);
-        }
+        TerminateSlot();
         for (int i = 0; i < startingSlot; i++)
         {
             allSlots[i].gameObject.SetActive(true);
@@ -77,25 +79,38 @@ public class Container : Singleton<Container>
             }
         }
     }
+    #endregion
 
+    #region Finalize
+    private void TerminateSlot()
+    {
+        foreach (var slot in allSlots)
+        {
+            slot.LockSlot();
+            slot.gameObject.SetActive(false);
+        }
+    } 
+    #endregion
+
+    #region SortingAndMatching
     public void SortingAssignedTilesPosition()
     {
+        /* Reposition of all the assigned tile into the list*/
         AssignedTiles = AssignedTiles.OrderBy(tile => tile.TileDataSO.name).ToList();
         if (assignedTiles.Count > usableSlots.Count)
         {
-            Debug.LogError("Tile list and slot list have different sizes.");
+            Debug.LogError("Tile list are greater than usableSlots. Please verify the adding to list method of the moving tile");
             return;
         }
+        /* Use that list to give all tiles their new position based on slot*/
         for (int i = 0; i < assignedTiles.Count; i++)
         {
             Tile tile = assignedTiles[i];
             Transform targetTransform = usableSlots[i].transform;
-
             tile.TryGetComponent(out MoveToSlot mover);
             mover.MoveToNewPostion(targetTransform);
         }
     }
-
     public void TileTripleMatching()
     {
         List<TileDataSO> assignedTileDataToRemove = new List<TileDataSO>();
@@ -105,7 +120,7 @@ public class Container : Singleton<Container>
 
         foreach (var tile in assignedTiles)
         {
-            if(tile.TryGetComponent(out MoveToSlot mover) && mover.IsMoving)
+            if (tile.TryGetComponent(out MoveToSlot mover) && mover.IsMoving)
             {
                 continue;
             }
@@ -145,26 +160,20 @@ public class Container : Singleton<Container>
                     }
                     tilesToRemove.Add(tile);
                 }
-                
+
             }
         }
-
+        //TODO: Kick these back into the pool
         /* Disable the associated GameObjects of the removed tiles */
         foreach (var tileToRemove in tilesToRemove)
         {
             tileToRemove.gameObject.SetActive(false);
             assignedTiles.Remove(tileToRemove);
         }
-        /* Move again if there is a match */
-        if (tilesToRemove.Count == 3)
-        {
-            SortingAssignedTilesPosition();
-        }
-    }
 
-
-    private void UnlockLockedSlot()
-    {
-        //When player click on locked slot it will unlock the first locked slot
-    }
+        /* Sort again if there is a match */
+        if (tilesToRemove.Count != 3) return;
+        SortingAssignedTilesPosition();
+    } 
+    #endregion
 }

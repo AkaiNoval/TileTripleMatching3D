@@ -8,6 +8,8 @@ public class TileSpawnManager : Singleton<TileSpawnManager>
 {
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
+    //TODO: SHOULD CLEAR ALL THE TILE WHEN CHOOSING ANOTHER SCENE
+    List<Tile> allActiveTile = new List<Tile>();
     const int MAX_SPAWN_ATTEMPTS = 100;
     const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f;
 
