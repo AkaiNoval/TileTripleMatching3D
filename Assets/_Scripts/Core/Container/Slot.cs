@@ -6,6 +6,10 @@ public class Slot : MonoBehaviour
 {
     [SerializeField] GameObject unlockImage;
 
+    private void Start()
+    {
+        Container.Instance.AllSlots.Add(this);
+    }
     public void UnlockSlot()
     {
         unlockImage.SetActive(false);

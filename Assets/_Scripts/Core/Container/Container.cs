@@ -40,6 +40,8 @@ public class Container : Singleton<Container>
             levelDataSO = value;
         }
     }
+
+    public List<Slot> AllSlots { get => allSlots; set => allSlots = value; }
     #endregion
 
     #region Initialize
@@ -50,22 +52,26 @@ public class Container : Singleton<Container>
     }
     private void InitStartingSlots()
     {
-        if (allSlots.Count == 0)
+        if (AllSlots.Count == 0)
         {
             Debug.LogWarning("Did you forget to assign slots into the container?");
             return;
         }
+
+        /* Sort the AllSlots list by position.x in ascending order */
+        AllSlots = AllSlots.OrderBy(slot => slot.transform.position.x).ToList();
+
         TerminateSlot();
         for (int i = 0; i < startingSlot; i++)
         {
-            allSlots[i].gameObject.SetActive(true);
-            allSlots[i].UnlockSlot();
+            AllSlots[i].gameObject.SetActive(true);
+            AllSlots[i].UnlockSlot();
         }
     }
     private void InitLockedSlots()
     {
         if (!canUnlockNewSlot) return;
-        foreach (Slot slot in allSlots)
+        foreach (Slot slot in AllSlots)
         {
             if (!slot.gameObject.activeSelf)
             {
@@ -84,7 +90,7 @@ public class Container : Singleton<Container>
     #region Finalize
     private void TerminateSlot()
     {
-        foreach (var slot in allSlots)
+        foreach (var slot in AllSlots)
         {
             slot.LockSlot();
             slot.gameObject.SetActive(false);
