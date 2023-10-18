@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,10 @@ using UnityEngine;
 
 public class Container : Singleton<Container>
 {
+    #region EventPublisher
+    public static event Action OnTileMatching; 
+    #endregion
+
     #region Fields
     [SerializeField] LevelDataSO levelDataSO;
     [Range(3, 8)]
@@ -12,7 +17,7 @@ public class Container : Singleton<Container>
     [SerializeField] bool canUnlockNewSlot;
     [SerializeField] List<Slot> allSlots;
     [SerializeField] List<Slot> usableSlots = new List<Slot>();
-    [SerializeField] List<Tile> assignedTiles = new List<Tile>(); 
+    [SerializeField] List<Tile> assignedTiles = new List<Tile>();
     #endregion
 
     #region Properties
@@ -116,11 +121,24 @@ public class Container : Singleton<Container>
             tile.TryGetComponent(out MoveToSlot mover);
             mover.MoveToNewPostion(targetTransform);
         }
+        Debug.Log("Sorting!");
     }
     public void TileTripleMatching()
     {
         List<TileDataSO> assignedTileDataToRemove = new List<TileDataSO>();
 
+        foreach (var tile in assignedTiles)
+        {
+                MoveToSlot mover;
+                if (tile.TryGetComponent(out mover))
+                {
+                    if (mover.IsMoving)
+                    {
+                    Debug.Log("There is a moving tile, Stop checking");
+                        return;
+                    }
+                }
+        }
         /* Count the occurrences of each unique TileDataSO in the list */
         Dictionary<TileDataSO, int> tileDataCount = new Dictionary<TileDataSO, int>();
 
@@ -152,8 +170,16 @@ public class Container : Singleton<Container>
 
         /* Remove identified TileDataSO from the list */
         List<Tile> tilesToRemove = new List<Tile>();
+
+        int tilesRemovedCount = 0;
+
         foreach (var tile in assignedTiles)
         {
+            if (tilesRemovedCount >= 3)
+            {
+                break; 
+            }
+
             if (assignedTileDataToRemove.Contains(tile.TileDataSO))
             {
                 MoveToSlot mover;
@@ -164,11 +190,13 @@ public class Container : Singleton<Container>
                         Debug.Log($"Do not remove the {tile.name} if it's moving");
                         continue;
                     }
-                    tilesToRemove.Add(tile);
-                }
 
+                    tilesToRemove.Add(tile);
+                    tilesRemovedCount++; // Increment the count
+                }
             }
         }
+
         //TODO: Kick these back into the pool
         /* Disable the associated GameObjects of the removed tiles */
         foreach (var tileToRemove in tilesToRemove)
@@ -178,8 +206,27 @@ public class Container : Singleton<Container>
         }
 
         /* Sort again if there is a match */
-        if (tilesToRemove.Count != 3) return;
-        SortingAssignedTilesPosition();
+        if (tilesToRemove.Count == 3)
+        {
+            OnTileMatching?.Invoke();
+            Debug.Log("There is a match, MATCH IT!");
+            SortingAssignedTilesPosition();
+            return;
+        }
+        else
+        {
+            if(assignedTiles.Count >= usableSlots.Count)
+            {
+                GameManager.Instance.UpdateGameState(GameState.Lose);
+            }
+        }
+    }
+    #endregion
+
+    #region UI
+    public void RestartContainerButton()
+    {
+        LevelDataSO = levelDataSO;
     } 
     #endregion
 }

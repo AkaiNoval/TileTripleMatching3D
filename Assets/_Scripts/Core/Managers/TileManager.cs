@@ -4,25 +4,53 @@ using UnityEngine;
 
  /* NOTE: If the amountToSpawn is too high,and you get a warning. 
   * You need to consider increase the spawnRadius or turning off the spawnCollisionCheckRadius*/
-public class TileSpawnManager : Singleton<TileSpawnManager>
+public class TileManager : Singleton<TileManager>
 {
+    #region Fields
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
     //TODO: SHOULD CLEAR ALL THE TILE WHEN CHOOSING ANOTHER SCENE
-    List<Tile> allActiveTile = new List<Tile>();
-    const int MAX_SPAWN_ATTEMPTS = 100;
-    const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f;
+    [SerializeField] List<Tile> allActiveTile = new List<Tile>();
 
-    public LevelDataSO LevelDataSO 
-    { 
+    const int MAX_SPAWN_ATTEMPTS = 100;
+    const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f; 
+    #endregion
+
+    #region Properties
+    public LevelDataSO LevelDataSO
+    {
         get => levelDataSO;
-        set 
+        set
         {
             InitTile(value);
-            levelDataSO = value; 
+            levelDataSO = value;
         }
     }
 
+    public List<Tile> AllActiveTile
+    {
+        get => allActiveTile;
+        set => allActiveTile = value;
+    }
+    #endregion
+
+    #region WinningEvent
+    private void OnEnable()
+    {
+        Container.OnTileMatching += CheckForWinCondition;
+    }
+    private void OnDisable()
+    {
+        Container.OnTileMatching -= CheckForWinCondition;
+    }
+    private void CheckForWinCondition()
+    {
+        if (allActiveTile.Count != 0) return;
+        GameManager.Instance.UpdateGameState(GameState.Victory);
+    }
+    #endregion
+
+    #region InitilizeTiles
     private void InitTile(LevelDataSO levelDataSO)
     {
         int objectsSpawned = 0;
@@ -62,7 +90,6 @@ public class TileSpawnManager : Singleton<TileSpawnManager>
 
         bool shouldDetectCollisionWhenSpawning = levelData.shouldDetectCollisionWhenSpawning;
 
-        // Check if there are any TileSpawnData left
         if (tilesData.Count == 0) return false;
 
         while (spawnAttempts < MAX_SPAWN_ATTEMPTS)
@@ -109,6 +136,33 @@ public class TileSpawnManager : Singleton<TileSpawnManager>
 
         return randomPoint;
     }
+    #endregion
+
+    #region UI
+    public void RestartLevel()
+    {
+        // Create a new list to store the tiles to deactivate
+        List<Tile> tilesToDeactivate = new List<Tile>();
+
+        // Iterate over allActiveTile and add tiles to the new list
+        foreach (var tile in allActiveTile)
+        {
+            tilesToDeactivate.Add(tile);
+        }
+
+        // Deactivate the tiles from the new list
+        foreach (var tile in tilesToDeactivate)
+        {
+            tile.gameObject.SetActive(false);
+        }
+
+        // Optionally, you can clear the allActiveTile list
+        allActiveTile.Clear();
+        LevelDataSO = levelDataSO;
+    } 
+    #endregion
+
+    #region DebugSpawningZone
     private void OnDrawGizmosSelected()
     {
         if (LevelDataSO == null) return;
@@ -117,5 +171,6 @@ public class TileSpawnManager : Singleton<TileSpawnManager>
         float spawnRadiusZ = LevelDataSO.spawnRadiusZ;
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadiusX * 2, spawnRadiusY * 2, spawnRadiusZ * 2));
-    }
+    } 
+    #endregion
 }

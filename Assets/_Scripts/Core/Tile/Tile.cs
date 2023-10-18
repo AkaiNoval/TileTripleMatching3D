@@ -22,5 +22,19 @@ public class Tile : MonoBehaviour
     {
         tileName = tileDataSO.tileName;
         tileImage.sprite = tileDataSO.tileSprite;
+        TileManager.Instance.AllActiveTile.Add(this);
     }
+    private void OnDisable()
+    {
+        if (Container.Instance != null && Container.Instance.AssignedTiles.Contains(this))
+        {
+            Container.Instance.AssignedTiles.Remove(this);
+        }
+
+        if (TileManager.Instance != null)
+        {
+            TileManager.Instance.AllActiveTile.Remove(this);
+        }
+    }
+
 }

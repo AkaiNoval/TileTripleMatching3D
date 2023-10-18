@@ -7,7 +7,7 @@ public class LevelSelectingButton : MonoBehaviour
     [SerializeField] LevelDataSO levelData;
     public void SelectingLevel()
     {
-        TileSpawnManager.Instance.LevelDataSO = levelData;
+        TileManager.Instance.LevelDataSO = levelData;
         Container.Instance.LevelDataSO = levelData;
     }
 }
