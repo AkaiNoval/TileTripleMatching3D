@@ -15,6 +15,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
                 if (instance == null)
                 {
+                    Debug.LogWarning("Ignore if you just exited the Playing mode");
                     Debug.LogError($"No instance of {typeof(T)} found in the scene.");
                 }
             }

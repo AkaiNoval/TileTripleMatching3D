@@ -138,6 +138,30 @@ public class TileManager : Singleton<TileManager>
     }
     #endregion
 
+    #region UI
+    public void RestartLevel()
+    {
+        // Create a new list to store the tiles to deactivate
+        List<Tile> tilesToDeactivate = new List<Tile>();
+
+        // Iterate over allActiveTile and add tiles to the new list
+        foreach (var tile in allActiveTile)
+        {
+            tilesToDeactivate.Add(tile);
+        }
+
+        // Deactivate the tiles from the new list
+        foreach (var tile in tilesToDeactivate)
+        {
+            tile.gameObject.SetActive(false);
+        }
+
+        // Optionally, you can clear the allActiveTile list
+        allActiveTile.Clear();
+        LevelDataSO = levelDataSO;
+    } 
+    #endregion
+
     #region DebugSpawningZone
     private void OnDrawGizmosSelected()
     {

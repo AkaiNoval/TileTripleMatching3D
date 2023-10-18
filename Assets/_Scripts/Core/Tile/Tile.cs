@@ -26,7 +26,15 @@ public class Tile : MonoBehaviour
     }
     private void OnDisable()
     {
-        TileManager.Instance.AllActiveTile.Remove(this);
+        if (Container.Instance != null && Container.Instance.AssignedTiles.Contains(this))
+        {
+            Container.Instance.AssignedTiles.Remove(this);
+        }
+
+        if (TileManager.Instance != null)
+        {
+            TileManager.Instance.AllActiveTile.Remove(this);
+        }
     }
 
 }

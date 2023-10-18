@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class Container : Singleton<Container>
 {
-    public static event Action OnTileMatching;
+    #region EventPublisher
+    public static event Action OnTileMatching; 
+    #endregion
+
     #region Fields
     [SerializeField] LevelDataSO levelDataSO;
     [Range(3, 8)]
@@ -168,8 +171,15 @@ public class Container : Singleton<Container>
         /* Remove identified TileDataSO from the list */
         List<Tile> tilesToRemove = new List<Tile>();
 
+        int tilesRemovedCount = 0;
+
         foreach (var tile in assignedTiles)
         {
+            if (tilesRemovedCount >= 3)
+            {
+                break; 
+            }
+
             if (assignedTileDataToRemove.Contains(tile.TileDataSO))
             {
                 MoveToSlot mover;
@@ -180,11 +190,13 @@ public class Container : Singleton<Container>
                         Debug.Log($"Do not remove the {tile.name} if it's moving");
                         continue;
                     }
-                    tilesToRemove.Add(tile);
-                }
 
+                    tilesToRemove.Add(tile);
+                    tilesRemovedCount++; // Increment the count
+                }
             }
         }
+
         //TODO: Kick these back into the pool
         /* Disable the associated GameObjects of the removed tiles */
         foreach (var tileToRemove in tilesToRemove)
@@ -211,4 +223,10 @@ public class Container : Singleton<Container>
     }
     #endregion
 
+    #region UI
+    public void RestartContainerButton()
+    {
+        LevelDataSO = levelDataSO;
+    } 
+    #endregion
 }
