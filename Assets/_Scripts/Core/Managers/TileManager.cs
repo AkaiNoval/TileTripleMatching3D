@@ -9,9 +9,10 @@ public class TileManager : Singleton<TileManager>
     #region Fields
     [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
-    [SerializeField] List<LevelDataSO> AlllevelDataSO;
-    //TODO: SHOULD CLEAR ALL THE TILE WHEN CHOOSING ANOTHER SCENE
-    [SerializeField] List<Tile> allActiveTile = new List<Tile>();
+    [SerializeField] List<LevelDataSO> allLevelDataSO;
+
+    List<Tile> allActiveTile = new List<Tile>();
+    TilePool tilePool;
 
     const int MAX_SPAWN_ATTEMPTS = 100;
     const float SPAWN_COLLISION_CHECK_RADIUS = 0.5f; 
@@ -52,6 +53,10 @@ public class TileManager : Singleton<TileManager>
     #endregion
 
     #region InitilizeTiles
+    private new void Awake()
+    {
+        tilePool = GetComponent<TilePool>();
+    }
     private void InitTile(LevelDataSO levelDataSO)
     {
         int objectsSpawned = 0;
@@ -103,8 +108,10 @@ public class TileManager : Singleton<TileManager>
                 float randomXRotation = RandomTileRotation(-20, 20);
                 float randomZRotation = RandomTileRotation(-20, 20);
                 Quaternion rotation = Quaternion.Euler(randomXRotation, randomYRotation, randomZRotation);
-                var spawnedTile = Instantiate(tileToSpawn, spawnPoint, rotation);
-                spawnedTile.transform.parent = transform;
+                //var spawnedTile = Instantiate(tileToSpawn, spawnPoint, rotation);
+                var spawnedTile = tilePool.tilePool.Get();
+                spawnedTile.transform.position = spawnPoint;
+                spawnedTile.transform.rotation = rotation;
                 spawnedTile.TryGetComponent(out Tile tile);
                 tile.TileDataSO = tilesData[0];
                 spawnedTile.name = tilesData[0].tileName;
@@ -170,12 +177,12 @@ public class TileManager : Singleton<TileManager>
     public void GoToNextLeveButton()
     {
         // Check if the current level data is in the list
-        if (AlllevelDataSO.Contains(levelDataSO))
+        if (allLevelDataSO.Contains(levelDataSO))
         {
-            int currentIndex = AlllevelDataSO.IndexOf(levelDataSO);
-            int nextIndex = (currentIndex + 1) % AlllevelDataSO.Count; // Wrap around if at the end of the list
-            LevelDataSO = AlllevelDataSO[nextIndex];
-            Debug.Log(AlllevelDataSO[nextIndex].name);
+            int currentIndex = allLevelDataSO.IndexOf(levelDataSO);
+            int nextIndex = (currentIndex + 1) % allLevelDataSO.Count; // Wrap around if at the end of the list
+            LevelDataSO = allLevelDataSO[nextIndex];
+            Debug.Log(allLevelDataSO[nextIndex].name);
         }
         else
         {
@@ -195,4 +202,5 @@ public class TileManager : Singleton<TileManager>
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadiusX * 2, spawnRadiusY * 2, spawnRadiusZ * 2));
     } 
     #endregion
+
 }

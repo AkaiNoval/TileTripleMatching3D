@@ -227,6 +227,6 @@ public class Container : Singleton<Container>
     public void RestartContainerButton()
     {
         LevelDataSO = levelDataSO;
-    } 
+    }
     #endregion
 }
