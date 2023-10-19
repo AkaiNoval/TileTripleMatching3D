@@ -22,6 +22,9 @@ public class LevelDataSO : ScriptableObject
     public int startingSlot;
     [Tooltip("Can player unlock new slots?")]
     public bool canUnlockNewSlot;
+    [Header("Timer")]
+    public float stateMaxTime;
+    public float plusTime;
 }
 
 [Serializable]

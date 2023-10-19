@@ -9,5 +9,6 @@ public class LevelSelectingButton : MonoBehaviour
     {
         TileManager.Instance.LevelDataSO = levelData;
         Container.Instance.LevelDataSO = levelData;
+        TimeManager.Instance.LevelDataSO = levelData;
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine;
 public class TileManager : Singleton<TileManager>
 {
     #region Fields
-    [SerializeField] Tile tileToSpawn;
     [SerializeField] LevelDataSO levelDataSO;
     [SerializeField] List<LevelDataSO> allLevelDataSO;
 
@@ -176,11 +175,13 @@ public class TileManager : Singleton<TileManager>
 
     public void GoToNextLeveButton()
     {
-        // Check if the current level data is in the list
+          // Check if the current level data is in the list
         if (allLevelDataSO.Contains(levelDataSO))
         {
+            GameManager.Instance.UpdateGameState(GameState.Playing);
             int currentIndex = allLevelDataSO.IndexOf(levelDataSO);
-            int nextIndex = (currentIndex + 1) % allLevelDataSO.Count; // Wrap around if at the end of the list
+            /* Wrap around if at the end of the list*/
+            int nextIndex = (currentIndex + 1) % allLevelDataSO.Count; 
             LevelDataSO = allLevelDataSO[nextIndex];
             Debug.Log(allLevelDataSO[nextIndex].name);
         }
