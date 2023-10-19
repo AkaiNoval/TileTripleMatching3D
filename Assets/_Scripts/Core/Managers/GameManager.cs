@@ -26,12 +26,15 @@ public class GameManager : Singleton<GameManager>
         switch (gameState)
         {
             case GameState.Menu:
+                PlayerDataManager.Instance.ResetPlayerScore();
                 break;
             case GameState.Playing:
+                PlayerDataManager.Instance.ResetPlayerScore();
                 break;
             case GameState.Victory:
+                PlayerDataManager.Instance.UpdateWinMedals();
                 break;
-            case GameState.Lose:
+            case GameState.Lose:              
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);

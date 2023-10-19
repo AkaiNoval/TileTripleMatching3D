@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     [SerializeField] Image tileImage;
     [SerializeField] TileCollisionController tileCollisionController;
     private ObjectPool<Tile> pool;
+    public Vector3 OriginalScale { get; set; }
     public TileDataSO TileDataSO 
     { 
         get => tileDataSO;
@@ -28,6 +29,10 @@ public class Tile : MonoBehaviour
         TileManager.Instance.AllActiveTile.Add(this);
     }
 
+    private void Awake()
+    {
+        OriginalScale = transform.localScale;
+    }
     private void OnEnable()
     {
         tileCollisionController.enabled = true;

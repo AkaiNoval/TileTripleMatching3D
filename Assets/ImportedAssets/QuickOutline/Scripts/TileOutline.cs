@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -316,5 +317,18 @@ public class TileOutline : MonoBehaviour {
     private void OnMouseExit()
     {
         this.enabled = false;
+    }
+    public void HightLightThisManually()
+    {
+        this.enabled = true;
+        StartCoroutine(TurnOffHightLight());
+    }
+    IEnumerator TurnOffHightLight()
+    {
+        if(this.enabled)
+        {
+            yield return new WaitForSeconds(3f);
+            this.enabled = false;
+        }
     }
 }
