@@ -43,7 +43,7 @@ public class MoveToSlot : MonoBehaviour
     {
         isMouseOver = false;
     }
-    void AssignToContainer(Container container)
+    public void AssignToContainer(Container container)
     {
         if (container.AssignedTiles.Count >= container.UsableSlots.Count) return;
         container.AssignedTiles.Add(tile);
@@ -60,6 +60,7 @@ public class MoveToSlot : MonoBehaviour
         sequence.OnComplete(() => 
         {
             IsMoving = false;
+            AudioSFXManager.PlaySFX(AudioKey.SlotSort);
             Container.Instance.TileTripleMatching();
         });
         sequence.Play();

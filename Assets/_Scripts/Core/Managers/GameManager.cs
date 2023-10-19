@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         UpdateGameState(GameState.Menu);
+        Application.targetFrameRate = 60;
     }
 
     public void UpdateGameState(GameState newState)
@@ -26,17 +27,30 @@ public class GameManager : Singleton<GameManager>
         switch (gameState)
         {
             case GameState.Menu:
+                PlayerDataManager.Instance.ResetPlayerScore();
                 break;
             case GameState.Playing:
+                PlayerDataManager.Instance.ResetPlayerScore();
                 break;
-            case GameState.Victory:
+            case GameState.Victory:              
+                HandleVictoryState();
                 break;
             case GameState.Lose:
+                HandleLosingState();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
         OnGameStateChanged?.Invoke(newState);
+    }
+    private void HandleVictoryState()
+    {
+        AudioSFXManager.PlaySFX(AudioKey.WinSFX);
+        PlayerDataManager.Instance.UpdateWinMedals();
+    }
+    private void HandleLosingState()
+    {
+        AudioSFXManager.PlaySFX(AudioKey.LostSFX);
     }
 
 }

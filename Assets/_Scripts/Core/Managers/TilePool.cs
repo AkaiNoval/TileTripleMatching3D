@@ -43,6 +43,7 @@ public class TilePool : Singleton<TilePool>
     /* What to do the with the tile that just got back into the pool */
     private void OnReturnObjectFromPool(Tile tile)
     {
+        tile.transform.localScale = tile.OriginalScale;
         tile.gameObject.SetActive(false);
     }
     /* What to do the with the tile that needs to destroy instead of returning to the pool */

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -196,21 +197,26 @@ public class Container : Singleton<Container>
                 }
             }
         }
-
-        //TODO: Kick these back into the pool
         /* Disable the associated GameObjects of the removed tiles */
         foreach (var tileToRemove in tilesToRemove)
         {
-            tileToRemove.gameObject.SetActive(false);
+            PlayTileRemovalAnimation(tileToRemove, 1f);
+            //tileToRemove.gameObject.SetActive(false);
             assignedTiles.Remove(tileToRemove);
+            TileManager.Instance.AllActiveTile.Remove(tileToRemove);
         }
 
         /* Sort again if there is a match */
         if (tilesToRemove.Count == 3)
         {
+            AudioSFXManager.PlaySFX(AudioKey.Matching);
             OnTileMatching?.Invoke();
             Debug.Log("There is a match, MATCH IT!");
             SortingAssignedTilesPosition();
+            if(TileManager.Instance.AllActiveTile.Count == 0) 
+            {
+                UIManager.Instance.HandleGameStateChange(GameState.Victory);
+            }
             return;
         }
         else
@@ -229,4 +235,23 @@ public class Container : Singleton<Container>
         LevelDataSO = levelDataSO;
     }
     #endregion
+
+    private void PlayTileRemovalAnimation(Tile tile, float animationDuration)
+    {
+        // Create a sequence of animations
+        Sequence sequence = DOTween.Sequence();
+
+        // Animation 1: Zoom out and shake a little bit
+        sequence.Append(tile.transform.DOScale(Vector3.one * 1.2f, animationDuration / 3))
+            .AppendCallback(() => tile.transform.DOShakePosition(0.5f, 0.2f, 20));
+
+        // Animation 2: Scale to as small as possible
+        sequence.Append(tile.transform.DOScale(Vector3.zero, animationDuration / 3));
+
+        // Animation 3: Set the GameObject inactive
+        sequence.AppendCallback(() => tile.gameObject.SetActive(false));
+
+        // Play the entire sequence
+        sequence.Play();
+    }
 }

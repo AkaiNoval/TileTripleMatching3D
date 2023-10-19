@@ -11,7 +11,7 @@ public class TimeManager : Singleton<TimeManager>
     private float countdownTime;
     private float currentTime;
     private LevelDataSO levelDataSO;
-
+    Vector3 originalPosition;
     public LevelDataSO LevelDataSO
     {
         get => levelDataSO;
@@ -28,12 +28,19 @@ public class TimeManager : Singleton<TimeManager>
         get => currentTime; 
         set => currentTime = Mathf.Clamp(value, 0, levelDataSO.stateMaxTime ); 
     }
-
+    private new void Awake()
+    {
+        originalPosition = plusTimerText.transform.localPosition;
+    }
     private void Update()
     {
         if (GameManager.Instance.gameState != GameState.Playing) return;
         if (CurrentTime > 0)
         {
+            if(currentTime < 5)
+            {
+                AudioSFXManager.PlaySFX(AudioKey.SlowOnTime);
+            }
             CurrentTime -= Time.deltaTime;
             UpdateTimerText();
         }
@@ -62,15 +69,9 @@ public class TimeManager : Singleton<TimeManager>
         // Enable the plusTimerText
         plusTimerText.gameObject.SetActive(true);
 
-        // Store the original position
-        Vector3 originalPosition = plusTimerText.transform.localPosition;
-
         // Use DoTween to animate the text (move up)
-        plusTimerText.transform.DOLocalMoveY(originalPosition.y + 30f, 1.0f).OnComplete(() =>
+        plusTimerText.transform.DOLocalMoveY(originalPosition.y + 10f, 0.5f).OnComplete(() =>
         {
-            // Reset the position to the original after the animation
-            plusTimerText.transform.localPosition = originalPosition;
-
             // Disable the text when the animation is complete
             plusTimerText.gameObject.SetActive(false);
         });
@@ -90,5 +91,7 @@ public class TimeManager : Singleton<TimeManager>
     private void OnDisable()
     {
         Container.OnTileMatching -= PlusBonusTime;
+        // Reset the position to the original
+        plusTimerText.transform.localPosition = originalPosition;
     }
 }

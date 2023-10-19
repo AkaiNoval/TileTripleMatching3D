@@ -46,7 +46,10 @@ public enum AudioKey
     Music,
     WinSFX,
     LostSFX,
-
+    Matching,
+    SlotSort,
+    Kick,
+    SlowOnTime,
 }
 public class AudioSFXManager
 {
