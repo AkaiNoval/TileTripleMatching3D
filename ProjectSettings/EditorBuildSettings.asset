@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: 89040d0c469ed6046ae0cc3cf98ab165
   - enabled: 1
     path: Assets/Scenes/MineralMatching.unity
     guid: 192a0f92ffe0800419de0ab81770357b
