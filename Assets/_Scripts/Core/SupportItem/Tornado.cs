@@ -7,6 +7,7 @@ public class Tornado : MonoBehaviour
     [SerializeField] Transform center;
     [SerializeField] float pullForce;
     [SerializeField] float refreshRate;
+    [SerializeField] float rotationSpeed;
 
     private void OnEnable()
     {
@@ -14,6 +15,7 @@ public class Tornado : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if(other.gameObject.TryGetComponent(out Tile tile))
         {
             StartCoroutine(PullTile(tile, true));
@@ -40,12 +42,16 @@ public class Tornado : MonoBehaviour
     {
         while(true)
         {
+            if (GameManager.Instance.gameState != GameState.Playing)
+            {
+                gameObject.SetActive(false);
+            }
             yield return new WaitForSeconds(10f);
             gameObject.SetActive(false);
         }
     }
     private void Update()
     {
-        transform.Rotate(Vector3.up * 90f * Time.deltaTime);
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
 }

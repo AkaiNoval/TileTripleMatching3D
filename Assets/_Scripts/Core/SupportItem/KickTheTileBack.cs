@@ -33,11 +33,11 @@ public class KickTheTileBack : MonoBehaviour
         {
             container.AssignedTiles.Remove(tileToKick);
         }
+        AudioSFXManager.PlaySFX(AudioKey.Kick);
         kickSequence.OnComplete(() =>
         {
             // Enable tileCollisionController 
             tileCollisionController.enabled = true;
-
         });
 
         // Play the sequence

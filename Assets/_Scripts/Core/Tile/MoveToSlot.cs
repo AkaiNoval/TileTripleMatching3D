@@ -60,6 +60,7 @@ public class MoveToSlot : MonoBehaviour
         sequence.OnComplete(() => 
         {
             IsMoving = false;
+            AudioSFXManager.PlaySFX(AudioKey.SlotSort);
             Container.Instance.TileTripleMatching();
         });
         sequence.Play();
