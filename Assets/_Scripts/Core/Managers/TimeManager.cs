@@ -69,12 +69,27 @@ public class TimeManager : Singleton<TimeManager>
         // Enable the plusTimerText
         plusTimerText.gameObject.SetActive(true);
 
-        // Use DoTween to animate the text (move up)
-        plusTimerText.transform.DOLocalMoveY(originalPosition.y + 10f, 0.5f).OnComplete(() =>
+        // Calculate the target position for the move down
+        Vector3 targetPosition = plusTimerText.transform.localPosition + Vector3.down * 10f;
+
+        // Create a sequence of animations
+        Sequence sequence = DOTween.Sequence();
+
+        // Animation 1: Move up
+        sequence.Append(plusTimerText.transform.DOLocalMoveY(plusTimerText.transform.localPosition.y + 10f, 0.5f));
+
+        // Animation 2: Move down a little bit
+        sequence.Append(plusTimerText.transform.DOLocalMove(targetPosition, 0.2f));
+
+        // Animation 3: Return to the original position
+        sequence.Append(plusTimerText.transform.DOLocalMove(originalPosition, 0.5f)).OnComplete(() =>
         {
             // Disable the text when the animation is complete
             plusTimerText.gameObject.SetActive(false);
         });
+
+        // Play the entire sequence
+        sequence.Play();
     }
 
     public void RestartLevel()
