@@ -363,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileDataSO: {fileID: 0}
   tileImage: {fileID: 4160343474509171062}
+  tileCollisionController: {fileID: -4795350664169199290}
 --- !u!114 &4892820790086259190
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,11 +6,14 @@ public class RetransformOnMouseOver : MonoBehaviour
     private Vector3 originalScale;
     private bool isMouseOver = false;
 
-    private void Start()
+    private void Awake()
     {
         originalScale = transform.localScale;
     }
-
+    private void OnEnable()
+    {
+        transform.localScale = originalScale;
+    }
     private void Update()
     {
         if (isMouseOver) return;

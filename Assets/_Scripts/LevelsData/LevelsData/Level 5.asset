@@ -47,3 +47,5 @@ MonoBehaviour:
   shouldDetectCollisionWhenSpawning: 0
   startingSlot: 5
   canUnlockNewSlot: 1
+  stateMaxTime: 60
+  plusTime: 5
